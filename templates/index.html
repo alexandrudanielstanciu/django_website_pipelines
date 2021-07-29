@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<body style="background-color:powderblue;">
+
+Welcome. Please select one image from the following list.
+<br>
+
+{% load staticfiles %}
+<br>
+
+<form method='post'>
+    {% csrf_token %}
+    {{ pipeline_selection.as_p }}
+
+    {{ image_selection.as_p }}
+    <input type='submit'>
+</form>
+
+
+
+
+<br>
+{% for path in paths %}
+{% with ''|add:path as imagePath %}
+<img src='{% static imagePath %}' width="300" height="200"/>
+<br>
+{% endwith %}
+{% endfor %}
+
+</body>
+
+</html>
